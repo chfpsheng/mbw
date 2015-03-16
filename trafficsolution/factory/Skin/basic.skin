@@ -1,0 +1,4 @@
+﻿<Skin Name="General" Intro="" DirPath="basic">
+<include url="%SWFPATH%Skin/basic/skin.xml" />
+<include url="%SWFPATH%Skin/public/action.xml" />
+</Skin>

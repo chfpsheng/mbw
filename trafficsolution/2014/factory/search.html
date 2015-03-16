@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="CSS/main.css" rel="stylesheet" type="text/css" />
+<script src="SpryAssets/xpath.js" type="text/javascript"></script>
+<script src="SpryAssets/SpryData.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/coe.js"></script>
+<script type="text/javascript" src="js/date.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+var SceneList = new Spry.Data.XMLDataSet("ETXml/SceneList.xml", "Tour/Scene/sceneitem");
+
+var myFilterFunc = function(dataSet, row, rowNumber)      
+{      
+    if ((row["@title"].indexOf($('key').value.Trim())>=0)||((row["@key"].indexOf($('key').value.Trim())>=0)))
+        return row;
+    return null;                         
+}    
+
+function search_scene()
+{
+	if ($('key').value=="")
+	{
+		SceneList.filter(null); 
+	}
+	else
+	{
+		SceneList.filter(null); // 取消过滤. 
+		SceneList.filter(myFilterFunc); 
+	}
+}
+function loadscene(sceneid)
+{
+	top.loadscene(sceneid);
+}
+</script>
+<title></title>
+</head>
+<body>
+<table width="100%" cellspacing="0" border="0" align="center" cellpadding="0" bordercolor="#CCCCCC"
+            style="border-collapse: collapse">
+  <tr>
+    <td><table cellspacing="1" cellpadding="0" width="100%" border="0">
+        <tr>
+          <td valign="top"><table width="100%" border="1" align="center" cellpadding="1" cellspacing="1" bordercolor="#EBEBEB"
+                                    style="border-collapse: collapse">
+              <tr>
+                <td align="center" nowrap="nowrap">关键字:</td>
+                <td><input name="key" type="text" id="key" onchange="search_scene();" size="20"/>
+                <input name="button" type="button" class="width80px" id="button" value="场景搜索"  onclick="search_scene();"/></td>
+              </tr>
+              <tr>
+                <td colspan="2"><div spry:region="SceneList" style="height:290px;WIDTH:280px;OVERFLOW-X:auto;OVERFLOW:scroll">
+                
+                    <table width="92%">
+                      <tr spry:repeat="SceneList" onMouseOver="this.className='tr_onmouseover cursor_pointer'" onMouseOut="this.className='tr_onmouseout cursor_pointer'">
+                        <td width="40" class="cursor_pointer" onclick="loadscene('{@sceneid}');" >{@sceneid}</td>
+                        <td height="24" class="cursor_pointer" onclick="loadscene('{@sceneid}');" >{@title}</td>
+                      </tr>
+                    </table>
+                  </div></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+</body>
+</html>

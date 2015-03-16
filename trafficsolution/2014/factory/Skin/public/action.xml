@@ -1,0 +1,334 @@
+﻿<krpano>
+  <action name="_setmap">if (Project.CustomMapTF==True,
+    copy(map_name,plugin[spot_%1].parent);
+    txtadd(radar_name,'radar_',get(map_name));
+    txtadd(active_name,'spot_active_',get(map_name));
+    _set_scenespot(get(radar_name),get(active_name),spot_%1,%1);
+    
+    <!-- 拖动地图处理部分   -->
+    if (plugin[get(map_name)].dragmap==true,
+    copy(box_name,plugin[get(map_name)].parent);
+    copy(box_width,plugin[get(box_name)].width);
+    copy(box_height,plugin[get(box_name)].height);
+    div(box_width,box_width,2);
+    div(box_height,box_height,2);
+    sub(mx,box_width,plugin[spot_%1].x);
+    sub(my,box_height,plugin[spot_%1].y);
+    tween(plugin[get(map_name)].x,get(mx),0.5);tween(plugin[get(map_name)].y,get(my),0.5);,)
+    <!-- 拖动地图处理部分   -->
+    ,);
+    if (Project.GoogleMapTF==True,
+    if (set.GoogleMapTF==True, plugin[GoogleMap].activatespot(gg_spot_%1);plugin[GoogleMap].pantospot(gg_spot_%1);,)
+    ,);</action>
+  <action name="_set_scenespot">
+    <!-- 调用自定义地图场景  -->
+    _hidenallmap_radar(%1,%2);
+    set(plugin[%1].visible,true);
+    set(plugin[%2].visible,true);
+    
+    copy(plugin[%1].x,plugin[%3].x);
+    copy(plugin[%1].y,plugin[%3].y);
+    copy(plugin[%2].x,plugin[%3].x);
+    copy(plugin[%2].y,plugin[%3].y);
+    copy(plugin[%2].hint,plugin[%3].hint);
+    copy(plugin[%2].onhover,plugin[%3].onhover);
+    copy(plugin[%1].heading,plugin[%3].heading);
+    
+    set(plugin[%3].icon_init,get(plugin[%3].icon_visit));
+    set(plugin[%3].url,get(plugin[%3].icon_init));</action>
+  <action name="flyout">
+    <!-- 热点漂浮   -->
+    copy(backup_rx,rx);
+    copy(backup_ry,ry);
+    copy(backup_rz,rz);
+    copy(backup_scale,scale);
+    copy(backup_zorder,zorder);
+    
+    tween(rx, 0);
+    tween(ry, 0);
+    tween(rz, 0);
+    tween(scale, %1);
+    set(zorder,10000);
+    
+    tween(flying, 1.0);</action>
+  <action name="flyback">
+    <!-- 热点缩回   -->
+    tween(rx, get(backup_rx));
+    tween(ry, get(backup_ry));
+    tween(rz, get(backup_rz));
+    tween(scale, get(backup_scale));
+    set(zorder,get(backup_zorder));
+    tween(flying, 0.0);</action>
+  <!--<style name="flyoutimage"
+	       distorted="true"
+	       backup_rx="0"
+	       backup_ry="0"
+	       backup_rz="0"
+	       backup_scale="0"
+	       backup_zorder="0"
+	       flying="0.0"
+	       flystate="0"
+	       onclick="if(flystate == 0, flyout_by_name(get(name)), flyback_by_name(get(name)) );"
+	       />-->
+  <action name="flyout_by_name">
+    <!-- make all other hotspots flying back -->
+    flyback_others();
+    
+    <!--
+			for best control set 4 fly states:
+			0 = normal
+			1 = while flying out
+			2 = out
+			3 = while flying back
+		-->
+    
+    <!-- save original position/rotation -->
+    if(hotspot[%1].flystate == 0,
+    copy(hotspot[%1].backup_rx,     hotspot[%1].rx);
+    copy(hotspot[%1].backup_ry,     hotspot[%1].ry);
+    copy(hotspot[%1].backup_rz,     hotspot[%1].rz);
+    copy(hotspot[%1].backup_scale,  hotspot[%1].scale);
+    copy(hotspot[%1].backup_zorder, hotspot[%1].zorder);
+    );
+    
+    <!-- set new state -->
+    set(hotspot[%1].flystate,1);
+    set(hotspot[%1].zorder,99);
+    
+    <!-- tween the rotations values to 0 for a flat screen view -->
+    tween(hotspot[%1].rx, 0);
+    tween(hotspot[%1].ry, 0);
+    tween(hotspot[%1].rz, 0);
+    tween(hotspot[%1].scale, 1.5);
+    
+    <!--
+			tween 'flying' to 1.0,
+			this makes the hotspot independent from the panorama rotation and scaling
+		-->
+    tween(hotspot[%1].flying, 1.0, 0.5, default, set(hotspot[%1].flystate,2); );</action>
+  <action name="flyback_by_name">if(hotspot[%1].flystate != 3,
+    set(hotspot[%1].flystate,3);
+    
+    <!-- tween back to the stored backup values -->
+    tween(hotspot[%1].rx,    get(hotspot[%1].backup_rx)    );
+    tween(hotspot[%1].ry,    get(hotspot[%1].backup_ry)    );
+    tween(hotspot[%1].rz,    get(hotspot[%1].backup_rz)    );
+    tween(hotspot[%1].scale, get(hotspot[%1].backup_scale) );
+    
+    copy(hotspot[%1].zorder, hotspot[%1].backup_zorder);
+    
+    <!-- tween 'flying' also back to 0.0 -->
+    tween(hotspot[%1].flying, 0.0, 0.5, default, set(hotspot[%1].flystate,0); );
+    );</action>
+  <action name="flyback_others">for(set(i,0), i LT hotspot.count, inc(i),
+    if(hotspot[%i].flystate GT 0, flyback_by_name(get(hotspot[get(i)].name)); );
+    );</action>
+  <action name="onhover_drag">
+    <!-- 拖动鼠标移动   -->
+    if (drag==true,
+    sub(dx,mouse.x);sub(dy,mouse.y);
+    
+    if (align==right,mul(dx,-1),);
+    if (align==righttop,mul(dx,-1),);
+    if (align==rightbottom,mul(dx,-1),);
+    
+    if (align==bottom,mul(dy,-1),);
+    if (align==leftbottom,mul(dy,-1),);
+    if (align==rightbottom,mul(dy,-1),);
+    
+    sub(mx,x,dx);sub(my,y,dy);
+    set(x,get(mx));set(y,get(my));
+    copy(dx,mouse.x);copy(dy,mouse.y);delayedcall(0.1,onhover_drag();),
+    )</action>
+  <action name="ondown_drag">
+    <!-- 拖动鼠标按下   -->
+    set(drag,true);
+    copy(dx,mouse.x);copy(dy,mouse.y);</action>
+  <action name="onup_drag">
+    <!-- 拖动鼠标抬起   -->
+    if (drag==true,
+    sub(dx,mouse.x);sub(dy,mouse.y);
+    
+    if (align==right,mul(dx,-1),);
+    if (align==righttop,mul(dx,-1),);
+    if (align==rightbottom,mul(dx,-1),);
+    
+    if (align==bottom,mul(dy,-1),);
+    if (align==leftbottom,mul(dy,-1),);
+    if (align==rightbottom,mul(dy,-1),);
+    
+    sub(mx,x,dx);sub(my,y,dy);
+    tween(x,get(mx),0.1);tween(y,get(my),0.1);
+    set(drag,false);
+    js(setxy(););
+    ,
+    )</action>
+	
+	 <action name="fixaspectresize_plugin">
+    <!-- 设置屏幕横竖比例   -->
+    div(aspect,%1,%2);
+    mul(destwidth,  stagewidth, aspect); 
+    copy(destheight, stagewidth); 
+    if(destwidth GT stagewidth, 
+    div(dwnscale,stagewidth,destwidth), set(dwnscale,1.0) 
+    );
+    mul(destwidth,  dwnscale);
+    mul(destheight, dwnscale);
+    if(destheight GT stageheight, 
+    div(dwnscale,stageheight,destheight), set(dwnscale,1.0) 
+    );
+    mul(destwidth,  dwnscale);
+    mul(destheight, dwnscale);
+    sub(destx, stagewidth,  destwidth);
+    sub(desty, stageheight, destheight);
+    mul(destx, 0.5);
+    mul(desty, 0.5);
+    copy(plugin[%3].x,      destx);
+    copy(plugin[%3].y,      desty);
+    copy(plugin[%3].width,  destwidth);
+    copy(plugin[%3].height, destheight);</action>
+	
+  <action name="fixaspectresize">
+    <!-- 设置屏幕横竖比例   -->
+    div(aspect,%1,%2);
+    mul(destwidth,  stagewidth, aspect); 
+    copy(destheight, stagewidth); 
+    if(destwidth GT stagewidth, 
+    div(dwnscale,stagewidth,destwidth), set(dwnscale,1.0) 
+    );
+    mul(destwidth,  dwnscale);
+    mul(destheight, dwnscale);
+    if(destheight GT stageheight, 
+    div(dwnscale,stageheight,destheight), set(dwnscale,1.0) 
+    );
+    mul(destwidth,  dwnscale);
+    mul(destheight, dwnscale);
+    sub(destx, stagewidth,  destwidth);
+    sub(desty, stageheight, destheight);
+    mul(destx, 0.5);
+    mul(desty, 0.5);
+    copy(area.x,      destx);
+    copy(area.y,      desty);
+    copy(area.width,  destwidth);
+    copy(area.height, destheight);</action>
+  <action name="draghotspot">if(%1 != dragging,
+    spheretoscreen(ath, atv, hotspotcenterx, hotspotcentery);
+    sub(drag_adjustx, mouse.stagex, hotspotcenterx); 
+    sub(drag_adjusty, mouse.stagey, hotspotcentery); 
+    draghotspot(dragging);
+    ,
+    if(pressed,
+    sub(dx, mouse.stagex, drag_adjustx);
+    sub(dy, mouse.stagey, drag_adjusty);
+    screentosphere(dx, dy, ath, atv);
+    delayedcall(0, draghotspot(dragging));
+    );
+    );</action>
+  
+  <!-- the action for dragging the layer/plugin elements - call it once in the ondown event -->
+  <action name="draglayer">if(%1 != dragging,
+    copy(drag_currentx, x);
+    copy(drag_currenty, y);
+    copy(drag_stagex, mouse.stagex);
+    copy(drag_stagey, mouse.stagey);
+    set(drag_sx, +1);
+    set(drag_sy, +1);
+    if(align == righttop,    set(drag_sx,-1); );
+    if(align == right,       set(drag_sx,-1); );
+    if(align == rightbottom, set(drag_sx,-1); set(drag_sy,-1); );
+    if(align == bottom,      set(drag_sy,-1); );
+    if(align == leftbottom,  set(drag_sy,-1); );
+    draglayer(dragging);
+    ,
+    if(pressed,
+    sub(dx, mouse.stagex, drag_stagex);
+    sub(dy, mouse.stagey, drag_stagey);
+    mul(dx, drag_sx);
+    mul(dy, drag_sy);
+    add(x, drag_currentx, dx);
+    add(y, drag_currenty, dy);
+    delayedcall(0, draglayer(dragging) );
+    );
+    );</action>
+  
+  <!-- a special action for dragging the text only vertically with a certain range -->
+  <action name="draglayer_text">if(%1 != dragging,
+    copy(drag_currenty, y);
+    copy(drag_stagey, mouse.stagey);
+    draglayer_text(dragging,%2);
+    ,
+    if(pressed,
+    sub(dy, mouse.stagey, drag_stagey);
+    add(y1, drag_currenty, dy);
+    add(y2, y1, pixelheight);
+    sub(y2, %2);
+    if(y1 GT 0, set(y1,0));
+    if(y2 LT 0, sub(y1,y2));
+    copy(y,y1);
+    delayedcall(0, draglayer_text(dragging,%2) );
+    );
+    );</action>
+  <action name="changeaspect">calcaspect();
+    
+    <!-- tween(animated change) to new area -->
+    set(in_area_tween,true);
+    tween(area.x,      get(destx),      0.5, easeInOutSine);
+    tween(area.y,      get(desty),      0.5, easeInOutSine);
+    tween(area.width,  get(destwidth),  0.5, easeInOutSine);
+    tween(area.height, get(destheight), 0.5, easeInOutSine, WAIT);
+    set(in_area_tween,false);</action>
+  <action name="resizearea">calcaspect();
+    
+    <!-- set new area size -->
+    copy(area.x,      destx);
+    copy(area.y,      desty);
+    copy(area.width,  destwidth);
+    copy(area.height, destheight);</action>
+  <action name="calcaspect">
+    <!-- calc new area, result stored in: destx,desty,destwidth,destheight  -->
+    if(aspect === null, set(aspect,0));
+    if(aspect == 0,
+    copy(destwidth,stagewidth); copy(destheight,stageheight);
+    ,
+    mul(destwidth, stagewidth, aspect); copy(destheight, stagewidth);
+    );
+    if(destwidth GT stagewidth, div(dwnscale,stagewidth,destwidth), set(dwnscale,1.0) );
+    mul(destwidth,  destwidth, dwnscale);
+    mul(destheight, destheight, dwnscale);
+    if(destheight GT stageheight, div(dwnscale,stageheight,destheight), set(dwnscale,1.0) );
+    mul(destwidth,  destwidth, dwnscale);
+    mul(destheight, destheight, dwnscale);
+    sub(destx, stagewidth,  destwidth);
+    sub(desty, stageheight, destheight);
+    mul(destx, destx, 0.5);
+    mul(desty, desty, 0.5);</action>
+	
+	<action name="copyhotspotsettingsfrom">
+        copy(distorted, hotspot[%1].distorted);
+        copy(ath, hotspot[%1].ath);
+        copy(atv, hotspot[%1].atv);
+        copy(scale, hotspot[%1].scale);
+        copy(rx, hotspot[%1].rx);
+        copy(ry, hotspot[%1].ry);
+        copy(rz, hotspot[%1].rz);
+    </action>
+	
+	
+	<action name="normalview">
+		tween(view.vlookat, 0, 2.5, easeInOutQuad);
+		tween(view.fov,     90,  2.5, easeInOutQuad);
+		tween(view.fisheye, 0.0, 2.5, easeInOutQuad);
+		wait(2.7);
+		set(display.flash10, on);
+	</action>
+	
+	<action name="fisheyeview">
+	    set(view.stereographic,true);
+		set(view.fisheye,1.0);
+		set(view.fov,155);
+		set(view.fovtype,VFOV);
+		set(view.fovmax,150);
+		set(view.vlookat,77);
+		set(view.fisheye,);
+	</action>
+</krpano>

@@ -1,0 +1,66 @@
+/* calendar*/
+#calendar {
+width:87%;
+border: 1px solid #cccccc;
+border-bottom: none;
+border-left: none;
+margin-bottom:10px;
+}
+#calendar span {
+width: 14%;
+color: #fff;
+font-size: 12px;
+font-family: lutha;
+font-weight: normal;
+text-align: center;
+
+border-bottom: 1px solid #cccccc;
+border-left: 1px solid #cccccc;
+padding: 2px 0px 1px 0px;
+margin: 0px;
+float: left;
+}
+#calendar span.today {
+color: #4296ce;
+font-weight: bold;
+background-color: #ff7300;
+}
+#calendar span.head {
+width:100%;
+color: #fff;
+text-align: left;
+font-weight: bold;
+font-family: Arial, Helvetica, sans-serif;
+background-color: #91b5e7;
+border-bottom: none;
+padding: 2px 5px 1px 5px;
+}
+#calendar span.foot {
+width:100%;
+color: #999999;
+text-align: center;
+font-weight: bold;
+font-family: Arial, Helvetica, sans-serif;
+background-color: #F0F0F0;
+padding: 0px;
+}
+#calendar a{color:#000;}
+#calendar a.arrow {
+color: #ooo;
+font-family: webdings;
+font-weight: normal;
+text-decoration: none;
+}
+#calendar a.arrow:hover {
+color: #0000FF;
+}
+#calendar .ww, #calendar .we {
+color: #666666;
+font-weight: bold;
+font-family: 宋体;
+background-color: #F0F0F0;
+}
+#calendar span.weekend, #calendar .we {
+color: #ff7300;
+}
+/* calendar*/

@@ -1,0 +1,224 @@
+body
+{
+	margin-top: 0px;
+	margin: 0px;
+	padding: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10.5pt;
+}
+
+.title_table
+{
+	background: url(/images/titlebg.gif); height: 24px; width: 100%;
+}
+
+.width100
+{
+	width:99%;
+}
+.left_title
+{
+	font-size:12px;
+	color:#336600;
+	width:80px;
+    background-color:#F7F7F7;
+    text-align:center;
+}
+
+.left_title_request
+{
+	font-size:12px;
+	color:#FF0000;
+	width:80px;
+    background-color:#F7F7F7;
+    text-align:center;
+}
+
+
+.board_kong
+{
+	border-collapse: collapse;
+}
+
+.tab_active
+{
+	width: 99px;
+	height: 18px;
+	background: url( '/images/tab/xi.gif' );
+	color: #ffffff;
+	line-height: 120%;
+	padding-top: 2px;
+	cursor: hand;
+}
+
+.tab_disable
+{
+	width: 99px;
+	height: 18px;
+	background: url( '/images/tab/xo.gif' );
+	font-weight: normal;
+	padding-top: 2px;
+	cursor: hand;
+}
+
+/* html的基本CSS  */
+
+input
+{
+	font-size: 12px;
+}
+
+input.noborder
+{
+	border: none;
+	vertical-align: baseline;
+}
+
+legend
+{
+	color: #000000;
+	font-weight: bold;
+}
+
+li
+{
+	font-size: 12px;
+}
+
+option
+{
+	font-size: 12px;
+}
+
+p
+{
+	font-size: 12px;
+}
+
+span
+{
+	font-size: 12px;
+}
+
+textarea
+{
+	font-size: 12px;
+	padding-top: 2px;
+	padding-right: -1px;
+	padding-left: 4px;
+	color: #000000;
+	border: 1px solid #999999;
+	background-color: #ffffff;
+}
+
+select
+{
+	font-size: 12px;
+	padding-top: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
+	color: #000000;
+	border: 1px solid #999999;
+	background-color: #ffffff;
+}
+
+
+option
+{
+	font-size: 12px;
+	padding-top: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
+	color: #000000;
+	border: 1px solid #999999;
+	background-color: #ffffff;
+}
+
+table
+{
+	font-size: 12px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+	
+}
+
+.tab_bottom_line
+{
+	border-bottom:#CCCCCC 1px dotted;
+	border-right:#CCCCCC 1px dotted;
+}
+
+.cursor_pointer { cursor:pointer}
+.cursor_move { cursor:move}
+
+.tr_onmouseover
+{
+	background-color:#F3F3E4
+}
+
+.tr_onmouseout
+{
+	background-color:#ffffff
+}
+
+.l_title 
+{
+	
+	color:#336600;
+}
+
+.TabbedPanelsTab_T {
+	position: relative;
+	width: 99px;
+	height: 18px;
+	background: url( '/images/tab/xo.gif' );
+	font-weight: normal;
+	padding-top: 4px;
+	cursor: hand;
+	float:left;
+}
+
+.displaynone
+{
+	display:none;
+}
+
+.display
+{
+	display:;
+}
+
+a:link {
+	font-size: 12px;
+	color: #2B2B2B;
+	text-decoration: underline;
+}
+a:visited {
+	font-size: 12px;
+	color: #2B2B2B;
+	text-decoration: underline;
+}
+a:hover {
+	font-size: 12px;
+	color: #2B2B2B;
+	text-decoration: underline;
+}
+a:active {
+	font-size: 12px;
+	color: #2B2B2B;
+	text-decoration: underline;
+}
+.table_title
+{
+     background-color:#D7F2FF;
+     color:Green;
+     font-weight:600;
+}
+
+.width80px {
+	width: 80px;
+	cursor:pointer;
+}
+
+#pre { color:#000000; float:none !important; background-color:#EEEEEE; border:1pt solid #DDDDDD; padding:5pt; margin:2pt; }

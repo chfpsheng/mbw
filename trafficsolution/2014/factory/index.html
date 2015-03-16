@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta HTTP-EQUIV="pragma" content="no-cache">
+<title></title>
+<script type="text/javascript"> 
+var oWindow=window.opener;
+ 
+	function krpano() 
+	{
+		return document.getElementById("krpanoSWFObject");
+	}
+	
+	function loadscene(sceneid)
+	{
+		krpano().call("_loadscene("+sceneid+")");
+	}
+</script>
+<style>
+html {
+	height:100%;
+}
+body {
+	height:100%;
+	overflow: hidden;
+	margin:0;
+	padding:0;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:16px;
+	color:#FFFFFF;
+	background-color:#000000;
+}
+a {
+	color:#AAAAAA;
+	text-decoration:underline;
+}
+a:hover {
+	color:#FFFFFF;
+	text-decoration:underline;
+}
+</style>
+</head>
+<body scroll="no" onLoad="window.focus();">
+<div id="krpanoDIV" style="width:100%;height:100%;">
+	<noscript><table style="width:100%;height:100%;"><tr style="valign:middle;"><td><div style="text-align:center;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
+</div>
+<script type="text/javascript" src="js/odialog.js"></script> 
+<script src="swfkrpano.js"></script>
+<script src="krpanoiphone.js"></script>
+<script src="krpanoiphone.license.js"></script>
+
+<script>
+	var viewer = createPanoViewer({swf:"tour.swf", id:"krpanoSWFObject", target:"krpanoDIV", html5:"auto",passQueryParameters:true});
+	//viewer.useHTML5("whenpossible");		// incomment to use the HTML5 krpanoJS viewer always when possible (Safari5)
+	
+	if( viewer.isDevice("iPhone|iPod|Android"))
+	{
+		//viewer.passQueryParameters("html5","prefer");
+		viewer.useHTML5("auto");
+		viewer.addVariable("xml", "tour.xml");
+	}
+	else
+	{
+		//viewer.useHTML5("prefer+webgl+css3d");
+		viewer.useHTML5("auto");
+		viewer.addVariable("xml", "tour.xml");
+	}
+	viewer.addParam("wmode", "transparent");
+	viewer.embed();
+</script>
+</body>
+</html>

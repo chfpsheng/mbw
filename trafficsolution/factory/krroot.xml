@@ -1,0 +1,1 @@
+﻿<krpano onstart="onpanoview();onpanoview();onpanoview();delayedcall(1,_playtourbksound());" basedir="%FIRSTXML%" logkey="False" showerrors="False" actionintervalbase="frame" bgcolor="0x000000" tweenintervalbase="action" idletime="0.5" colorcorrection="default" debugmode="False" />

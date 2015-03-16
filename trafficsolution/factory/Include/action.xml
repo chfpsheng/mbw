@@ -1,0 +1,103 @@
+<krpano onstart="onpanoview();">
+
+<action name="_autoViewGroupMap">
+set(_CMapGrupTF,get(SSetType.CMapGrupTF));
+set(type_id,get(SSet.TypeID));
+set(_cmvisible,null);
+
+if(_currentMap!=null,
+		copy(_cmvisible,get(plugin[get(_currentMap)].visible));
+		,
+		);
+
+
+if(_CMapGrupTF==true, _hideallmap();
+for(set(i,0),i LT SenceType.count, inc(i),
+	copy(currentMap,SenceType[get(i)].id);
+	if(currentMap==type_id, 
+	   copy(_currentMap,SenceType[get(i)].Map_Name);
+	   set(plugin[get(_currentMap)].visible,%1);,
+ 	);	
+,);, ,);
+
+if(_cmvisible!=null,
+	set(plugin[get(_currentMap)].visible,get(_cmvisible));,
+)
+</action>
+
+
+<action name="_autochooselayer">
+set(type_id,get(SSet.TypeID));
+set(_Thcount,get(Thumbnail.count));
+set(_Stcount,get(SenceType.count));
+set(_width,0);
+set(_height,0);
+set(_padding,0);
+
+
+for(set(i,0),i LT _Thcount,inc (i),
+	copy(_cThumbnail_ID,Thumbnail[get(i)].id);
+	copy(_currentTF,Thumbnail[get(i)].groupTF);
+	copy(_rollType,Thumbnail[get(i)].rollType);
+
+	copy(_width,Thumbnail[get(i)].width);
+	copy(_height,Thumbnail[get(i)].height);
+	copy(_padding,Thumbnail[get(i)].padding);
+
+	set(_num,0);
+	if(_rollType==H,add(_num1,_width,_padding);,add(_num1,_height,_padding););
+	
+	set(_SenceCount,0);
+	for(set(j,0),j LT _Stcount,inc(j),
+		copy(_SenceTypeID,SenceType[get(j)].id);
+		copy(_SenceCount,SenceType[get(j)].SenceCount);
+		txtadd(_clayer,'c_ly_',get(_cThumbnail_ID),'_',get(_SenceTypeID));
+		
+				
+		if (_currentTF,
+				copy(_panme ,layer[get(_clayer)].parent);
+				if(type_id==_SenceTypeID,
+			 		set(layer[get(_clayer)].visible,true);
+					//set(plugin[get(_panme)].visible,false);
+					mul(_num,_num1,_SenceCount);
+					add(_num,_padding);
+					if(_rollType==H,
+					 	set(plugin[get(_panme)].width,get(_num));,
+						set(plugin[get(_panme)].height,get(_num));
+					  )					
+					,
+					set(layer[get(_clayer)].visible,false); 
+				 )
+			,
+				//_ms(_clayer);
+			)
+	)
+	
+);
+
+</action>
+
+<action name="_onBingMapView">
+set(SSet.GoogleMapTF,True);
+      txtadd(spotid,'bg_spot_',get(SSet.Scene_ID));
+      plugin[BingMap].activatespot(get(spotid));
+      plugin[BingMap].pantospot(get(spotid));
+      set_scene(get(SSet.Scene_ID));//场景预览加载完成统一事件
+</action>
+
+<action name="onpanoview">
+set(_currentMap,null);
+
+//set(_currentMap,'null');//初始化定义当前地图
+
+
+</action>
+
+<action name="_mmss">
+js(alert(get(%1)));
+</action>
+
+<action name="_ms">
+js(alert(%1));
+</action>
+</krpano>

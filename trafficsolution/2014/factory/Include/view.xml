@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<krpano>
+  <contextmenu fullscreen="true">
+    <item caption="普通视图" onclick="action(rectview);" separator="true" />
+    <item caption="鱼眼视图" onclick="action(fisheyeview);" />
+    <item caption="建筑视图" onclick="action(architectural);" />
+    <item caption="平射投影" onclick="action(stereofisheyeview);" />
+    <item caption="小星球视图" onclick="action(littleplanet);" />
+    ></contextmenu>
+  <action name="rectview">tween(view.fovmax, 155.0, distance(179, 0.25), easeoutquad); tween(view.architectural, 0.0, distance(1.0, 0.25), easeoutquad); tween(view.fisheye, 0.0, distance(1.0, 0.25), easeoutquad, set(view.stereographic,false); );</action>
+  <action name="fisheyeview">tween(view.architectural, 0.0, distance(1.0, 0.25), easeoutquad); tween(view.fisheye, 0.0 ,distance(1.0, 0.20), easeoutquad, set(view.stereographic,false); set(view.fovmax,179); tween(view.fisheye, 0.35, distance(1.0, 1.25)); );</action>
+  <action name="stereofisheyeview">tween(view.architectural, 0.0, distance(1.0, 0.25), easeoutquad); tween(view.fisheye, 0.0 ,distance(1.0, 0.10), easeoutquad, set(view.stereographic,true); tween(view.fisheye, 1.0, distance(1.0, 1.25)); tween(view.fovmax, 150, distance(179, 1.25)); );</action>
+  <action name="littleplanet">tween(view.architectural, 0.0, distance(1.0, 0.25), easeoutquad); tween(view.fisheye, 0.0 ,distance(1.0, 0.10), easeoutquad, set(view.stereographic,true); tween(view.fisheye, 1.0, distance(1.0, 0.75)); tween(view.fov, 130, distance(179, 0.75), easeoutquad, set(view.fovmax,150);); tween(view.vlookat, 90, distance(179, 0.75), easeoutquad); );</action>
+  <action name="architectural">tween(view.fovmax, 155.0, distance(179, 0.25), easeoutquad); tween(view.architectural, 1.0, distance(1.0, 0.25), easeoutquad); tween(view.fisheye, 0.0, distance(1.0, 0.25), easeoutquad, set(view.stereographic,false); );</action>
+</krpano>

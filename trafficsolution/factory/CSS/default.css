@@ -1,0 +1,391 @@
+
+/*自动套用标签样式*/
+A:link   { color:black ; font-size: 9pt; text-decoration: none }
+A:active { color:#808080; font-size: 9pt; text-decoration: underline }
+A:visited { color:black; font-size: 9pt; text-decoration: none}
+A:hover {color:blue; font-size: 9pt; text-decoration: none}
+BODY,body {
+	FONT-SIZE: 12px;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	scrollbar-face-color: #DEE3E7;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-shadow-color: #DEE3E7;
+	scrollbar-3dlight-color: #D1D7DC;
+	scrollbar-arrow-color:  #006699;
+	scrollbar-track-color: #EFEFEF;
+	scrollbar-darkshadow-color: #98AAB1;
+	background-color:#e5f1fd
+}
+
+/*与自动套用表格背景统一的Body样式*/
+.BODY,.body {
+	FONT-SIZE: 12px;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	scrollbar-face-color: #DEE3E7;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-shadow-color: #DEE3E7;
+	scrollbar-3dlight-color: #D1D7DC;
+	scrollbar-arrow-color:  #006699;
+	scrollbar-track-color: #EFEFEF;
+	scrollbar-darkshadow-color: #98AAB1;
+	background-color : #F2F8FF;
+}
+TABLE,table {
+	FONT-SIZE: 12px;
+	LINE-HEIGHT: 15px;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	background-color : #F2F8FF;
+	border : 1px solid #0099cc;
+	padding : 5px
+}
+td,TD{
+
+	  FONT-SIZE: 12px;
+	LINE-HEIGHT: 15px;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	padding : 5px;
+	border : 1px solid #D2E9FF
+}
+tr,TR{
+	FONT-SIZE: 12px;
+	LINE-HEIGHT: 15px;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	padding : 5px;
+	border : 1px solid #D2E9FF
+}
+
+button,BUTTON{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 15px;
+	background : #EBF3FE;
+	border : 1px solid #C0C0C0;
+	border-bottom : 1px solid #0099cc;
+	border-left : 1px solid #99CCFF;
+	border-right : 1px solid #0099cc;
+	border-top : 1px solid #99CCFF;
+	height: 25px;
+}
+INPUT,SELECT,input, select, checkbox {
+	font-family:Tahoma,Verdana,Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 15px;
+	background : #F7FBFF;
+	border : 1px solid;
+	border-bottom : 1px solid white;
+	border-left : 1px solid gray;
+	border-right : 1px solid white;
+	border-top : 1px solid gray;
+	height:22px
+}
+
+TEXTAREA, textarea {
+	font-family:Tahoma,Verdana,宋体;
+	font-size: 12px;
+	line-height: 15px;
+
+	background : #F7FBFF;
+	border : 1px solid;
+	border-bottom : 1px solid white;
+	border-left : 1px solid gray;
+	border-right : 1px solid white;
+	border-top : 1px solid gray;
+
+}
+/*************************默认自动套用标签样式结束***********************************/
+
+/************************* 可选样式变量<TD class="??"> ****************************/
+/*左边页面的Body样式加入方式 <body class="Lbody">*/
+.Lbody{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	scrollbar-face-color: #DEE3E7;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-shadow-color: #DEE3E7;
+	scrollbar-3dlight-color: #D1D7DC;
+	scrollbar-arrow-color:  #006699;
+	scrollbar-track-color: #EFEFEF;
+	scrollbar-darkshadow-color: #98AAB1;
+	background-color :#97BEFF;
+}
+
+.Ltable {
+	FONT-SIZE: 12px;
+	LINE-HEIGHT: 15px;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color:#ffffff;
+	background-color :#97BEFF;
+	border : 1px solid #0099cc;
+	padding : 5px;
+}
+.Ltd,.Ltr{
+	FONT-SIZE: 12px;
+	color:#ffffff;
+	LINE-HEIGHT: 15px;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	padding : 5px;
+	border : 1px solid #D2E9FF;
+}
+.glow {
+	filter: glow(color=#FFFFFF,strength=4);
+}
+.button {
+	font-family:Tahoma,Verdana,Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 15px;
+	background : #EBF3FE;
+	border : 1px solid #C0C0C0;
+	border-bottom : 1px solid #0099cc;
+	border-left : 1px solid #99CCFF;
+	border-right : 1px solid #0099cc;
+	border-top : 1px solid #99CCFF;
+	height: 20px;
+}
+.CheckRadio {
+	font-family:Tahoma,Verdana,Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	border : 0px solid;
+	border-bottom : 0px solid;
+	border-left : 0px solid;
+	border-right : 0px solid;
+	border-top : 0px solid;
+	height:22px
+}
+/******瘦按钮****/
+.InputText{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 15px;
+	background : #dce7fb;
+	border : 1px solid;
+	border-top : 1px solid #000000;
+	border-right : 1px solid #000000;
+	border-left : 1px solid #000000;
+	border-bottom : 1px solid #000000;
+}
+.InputButton{
+	font-family:Tahoma,Verdana,Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	background : #abcbfe;
+	border : 1px solid;
+        cursor:hand;
+	border-bottom : 1px solid white;
+	border-left : 1px solid gray;
+	border-right : 1px solid white;
+	border-top : 1px solid gray;}
+.thin_button {
+	font-family:Tahoma,Verdana,Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 15px;
+	background : #EBF3FE;
+	border : 1px solid #C0C0C0;
+         cursor:hand;
+	border-bottom : 1px solid #0099cc;
+	border-left : 1px solid #99CCFF;
+	border-right : 1px solid #0099cc;
+	border-top : 1px solid #99CCFF;
+	height: 20px;
+}
+.table_comment {
+	background-color : #F0F0F0;
+	border : 1px solid #D1E0FF;
+	padding : 5px;
+}
+
+/****表格头*****/
+.table_title {
+	background-color : #97BEFF;
+	border : 1px solid #B6D3FF;
+	padding : 5px;
+}
+.TRTitle{
+	background-color : #e8f4ff;
+	border : 0px solid #B6D3FF;
+	padding : 5px;
+}
+.TDTitle{
+	background-color : #E8F4FF;
+	border : 1px solid #B6D3FF;
+	padding : 5px;
+}
+.TDContent{
+	background-color : #f2f8ff;
+	border : 1px solid #B6D3FF;
+	padding : 5px;
+}
+.LTRtitle {
+	background-color : #6CA3F1;
+	color:#ffffff;
+	border : 1px solid #B6D3FF;
+	padding : 5px;
+}
+.LTDtitle{
+	color:#ffffff;
+	background-color : #6CA3F1;
+	border : 1px solid #B6D3FF;
+	padding : 5px;
+}
+
+/*张艳华添加，为工具栏背景色*/
+.ToolBarBg{
+	color:#ffffff;
+	background-color : #B7D4FE;
+	border : 1px solid #B6D3FF;
+	padding : 5px;
+}
+
+filter:progid:DXImageTransform.Microsoft.Gradient(gradienttype=0, startcolorstr=#ffffff, endcolorstr=#dddddd)
+       progid:DXImageTransform.Microsoft.Shadow(direction=135,color=#000000,strength=3);
+}
+
+/*字体加粗*/
+.ht{
+	font-weight:bold
+}
+
+<!--以下弹出式菜单专用，-->
+.menutable {
+	BACKGROUND-COLOR: #ffffff;
+	BORDER-BOTTOM: #307ce8 1px solid;
+	BORDER-LEFT: #307ce8 5px solid;
+	BORDER-RIGHT: #307ce8 1px solid;
+	BORDER-TOP: #94bcf3 1px solid;
+	FONT-SIZE: 9pt;
+	POSITION: absolute;
+	Z-INDEX: 100
+}
+.menutable1 {
+	BACKGROUND-COLOR: #ffffff;
+	BORDER-BOTTOM: #307ce8 1px solid;
+	BORDER-LEFT: #307ce8 3px solid;
+	BORDER-RIGHT: #307ce8 1px solid;
+	BORDER-TOP: #94bcf3 1px solid;
+	FONT-SIZE: 9pt;
+	Z-INDEX: 100
+}
+.menutrin {
+	BACKGROUND-COLOR: #1a71e6;
+	COLOR: #ffffff;
+	CURSOR: hand;  鼠标点上去的背景色--->:
+}
+.menutrout {
+	COLOR: #000000;
+	CURSOR: hand
+}
+
+.tabletdin {
+	color: #0000FF;border: 1 dotted #CCCCCC ;
+	BACKGROUND-COLOR:#E9FEF8
+}
+.tabletdout{
+
+}
+
+.menutd0 {
+	HEIGHT: 25px;
+	TEXT-ALIGN: center;
+	WIDTH: 28px; 改变这个修改菜单高度--->:
+}
+.menutd1 {
+	FONT-FAMILY: Webdings;
+	TEXT-ALIGN: right;
+	WIDTH: 40px
+}
+.linktd1 {
+	WIDTH: 40px
+}
+.menutd2 {
+	WIDTH: 4px
+}
+.menuhr {
+	BORDER-BOTTOM: #307ce8 1px inset;
+	BORDER-LEFT: #307ce8 1px inset;
+	BORDER-RIGHT: #307ce8 1px inset;
+	BORDER-TOP: #307ce8 1px inset
+}
+.dirtr {
+	BACKGROUND-COLOR: #cccccc;
+	CURSOR: hand;
+}
+.a.b:link
+{
+	text-decoration:none;
+	color: #000000;
+}
+
+.a.b:over
+{
+	text-decoration:none;
+	color: #ffffff;
+}
+
+.a.b:visited
+{
+	COLOR: #000000;
+	text-decoration:none;
+}
+
+.a.b:actived
+{
+	COLOR: #000000;
+	text-decoration:none;
+}
+
+.table_bg
+{
+	background-color: #BBBEF4;
+}
+
+.tablebg
+{
+	background-color: #f1f1f1;
+}
+.text
+{
+	background: #ffffff;
+	border-color: #c1c1c1 #c1c1c1 #c1c1c1;
+	border-style: solid;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+    height:16px;
+	font-family:宋体;
+	font-size:9pt;
+}
+.text1
+{
+	background: #ffffff;
+	border-color: #C9C932 #C9C932 #C9C932;
+	border-style: solid;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+    height:22px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:9pt;
+}
+.textarea
+{
+	background: #ffffff;
+	border-color: #C9C932 #C9C932 #C9C932;
+	border-style: solid;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+    height:120px;
+	font-family:宋体;
+	font-size:9pt;
+}
+.h3
+{
+	font-size:14px;
+	font-weight:bold;
+	color:#165892
+}
+.Fontsize9{font-size:9pt;color:blue}
+.p1 {font-size: 9pt; font-family:Arial, Helvetica, sans-serif;line-height:20px}
+
+

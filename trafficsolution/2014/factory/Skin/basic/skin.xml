@@ -1,0 +1,22 @@
+﻿<krpano>
+  <plugin name="soundinterface" url="%SWFPATH%/plugins/soundinterface.swf" alturl="%SWFPATH%/plugins/soundinterface.js" preload="true" keep="true" visible="true"/>
+  <plugin name="dblclick" 
+        url="%SWFPATH%/plugins/dblclick.swf"
+        keep="true"
+        ondblclick="switch(fullscreen)"
+        />
+	<!--	<style name="images/hotspot_ani_black"
+	       url="images/hotspot_ani_black_64x64x20.png"
+	       crop="0|0|64|64"
+	       framewidth="64" frameheight="64" frame="0" lastframe="19"
+	       onloaded="hotspot_animate();"
+	       />
+
+	hotspot style predefines - white hotspot 
+	      <style name="hotspot_ani_white"
+	       url="images/hotspot_ani_white_64x64x20.png"
+	       crop="0|0|64|64"
+	       framewidth="64" frameheight="64" frame="0" lastframe="19"
+	       onloaded="hotspot_animate();"
+	       />-->
+</krpano>
